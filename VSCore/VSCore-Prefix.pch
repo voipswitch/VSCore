@@ -1,0 +1,14 @@
+//
+// Prefix header for all source files of the 'VSCore' target in the 'VSCore' project
+//
+
+#ifdef __OBJC__
+
+#ifndef DD_LOG_LEVEL
+#define DD_LOG_LEVEL
+#import "DDLog.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#endif
+
+#endif
+
