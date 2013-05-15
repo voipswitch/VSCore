@@ -1,9 +1,9 @@
 //
 //  FileHelper.m
-//  VideoLibrary
+//  VSCore, (C) VoipSwitch
 //
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Created by Bartłomiej Żarnowski on 05.04.2012.
-//  Copyright (c) 2012 VoipSwitch. All rights reserved.
 //
 
 #import "FileHelper.h"

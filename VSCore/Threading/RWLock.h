@@ -1,9 +1,9 @@
 //
 //  RWLock.h
-//  VideoLibrary
+//  VSCore, (C) VoipSwitch
 //
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Created by Bartłomiej Żarnowski on 29.05.2012.
-//  Copyright (c) 2012 VoipSwitch. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

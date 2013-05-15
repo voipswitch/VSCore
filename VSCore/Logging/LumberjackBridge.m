@@ -1,9 +1,9 @@
 //
 //  LumberjackBridge.m
-//  Tosters Core
+//  VSCore, (C) VoipSwitch
 //
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Created by Bartłomiej Żarnowski on 16.03.2012.
-//  Copyright (c) 2012 The Tosters. All rights reserved.
 //
 
 #import "LumberjackBridge.h"

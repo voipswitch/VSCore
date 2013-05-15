@@ -1,9 +1,9 @@
 //
 //  NSMutableArray(WeakReferences)
-//  Vippie
+//  VSCore, (C) VoipSwitch
 //
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Created by Bartłomiej Żarnowski on 11.07.2012
-//  Copyright (c) VoipSwitch. All rights reserved.
 //
 
 #import "NSMutableArray+WeakReferences.h"

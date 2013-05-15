@@ -1,9 +1,9 @@
 //
 //  BadgeInfoProvider
-//  Vippie
+//  VSCore, (C) VoipSwitch
 //
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Created by Bartłomiej Żarnowski on 10.07.2012
-//  Copyright (c) VoipSwitch. All rights reserved.
 //
 
 //Value informing that this badge provider is not ready to work as designed. Old state should be used.

@@ -1,9 +1,9 @@
 //
 //  ProgressiveContainer.h
-//  Join
+//  VSCore, (C) VoipSwitch
 //
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Created by Bartlomiej Zarnowski on 1/15/12.
-//  Copyright (c) 2012 Voipswitch. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

@@ -1,9 +1,9 @@
 //
 //  BootLoader.m
-//  Scrapyard
+//  VSCore, (C) VoipSwitch
 //
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Created by Bartłomiej Żarnowski on 12.12.2012.
-//  Copyright (c) 2012 Bartłomiej Żarnowski. All rights reserved.
 //
 
 #import "BootLoader.h"

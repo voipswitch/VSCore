@@ -1,7 +1,8 @@
 //
 //  NSString+Email.m
-//  Vippie
+//  VSCore, (C) VoipSwitch
 //
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Created by Tomasz Blicharczyk on 20.08.2012.
 //
 //

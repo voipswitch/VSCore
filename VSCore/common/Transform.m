@@ -1,9 +1,9 @@
 //
 //  Transform.m
-//  VSCore
+//  VSCore, (C) VoipSwitch
 //
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Created by Bartłomiej Żarnowski on 06.11.2012.
-//  Copyright (c) 2012 Bartłomiej Żarnowski. All rights reserved.
 //
 
 #import "Transform.h"

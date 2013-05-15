@@ -1,10 +1,10 @@
 //
 //  StringUtils.m
-//  Join
+//  VSCore, (C) VoipSwitch
 //
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Created by Dima on 09-07-28.
-// Changed by Witek on 12-03-18.
-//  Copyright 2009 Voipswitch. All rights reserved.
+//  Changed by Witek on 12-03-18.
 //
 
 #import "StringUtils.h"

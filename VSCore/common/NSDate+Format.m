@@ -1,9 +1,9 @@
 //
 //  NSDate+Format.m
-//  Join
+//  VSCore, (C) VoipSwitch
 //
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Created by Tomasz Blicharczyk on 20.03.2012.
-//  Copyright (c) 2012 Voipswitch. All rights reserved.
 //
 
 #import "NSDate+Format.h"

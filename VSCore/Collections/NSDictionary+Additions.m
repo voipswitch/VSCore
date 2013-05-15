@@ -1,9 +1,9 @@
 //
 //  NSDictionary+Additions.m
-//  Join
+//  VSCore, (C) VoipSwitch
 //
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Created by Bartlomiej Klin on 20.06.2012.
-//  Copyright (c) 2012 Voipswitch. All rights reserved.
 //
 
 

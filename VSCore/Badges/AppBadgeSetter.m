@@ -1,8 +1,8 @@
 //
 //  AppBadgeSetter
-//  Vippie
+//  VSCore, (C) VoipSwitch
 //
-//  Created by Bartłomiej Żarnowski on 10.07.2012
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Copyright (c) VoipSwitch. All rights reserved.
 //
 

@@ -1,9 +1,9 @@
 //
 //  DDCustomFileLogger.h
-//  VSCore
+//  VSCore, (C) VoipSwitch
 //
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Created by Marek Kotewicz on 3/27/13.
-//  Copyright (c) 2013 Bartłomiej Żarnowski. All rights reserved.
 //
 
 #import <Foundation/NSFileHandle.h>

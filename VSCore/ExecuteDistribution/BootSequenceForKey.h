@@ -1,9 +1,9 @@
 //
 //  BootSequenceForKey.h
-//  VSCore
+//  VSCore, (C) VoipSwitch
 //
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Created by Kamil Rzeźnicki on 14.03.2013.
-//  Copyright (c) 2013 Bartłomiej Żarnowski. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

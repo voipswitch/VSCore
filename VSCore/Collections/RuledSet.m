@@ -1,9 +1,9 @@
 //
 //  RuledSet.m
-//  RichCommunicationSuite
+//  VSCore, (C) VoipSwitch
 //
+//  This file is part of VSCore, which is distributed under BSD-new license.
 //  Created by Bartłomiej Żarnowski on 26.10.2012.
-//  Copyright (c) 2012 Bartłomiej Żarnowski. All rights reserved.
 //
 
 #import "RuledSet.h"
