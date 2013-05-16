@@ -112,4 +112,9 @@
  * {@link UIApplicationDelegate#applicationWillTerminate:}
  */
 +(void)destroy;
+
+/**
+ * Dumps all keys which are registered in askable.
+ */
++(void)list;
 @end

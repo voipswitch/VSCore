@@ -106,4 +106,25 @@ static NSMutableDictionary* routes;
 +(void)destroy{
     [routes removeAllObjects];
 }
+
++(void)list{
+    DDLogInfo(@"Askable dump list:");
+    __block NSSet* autoDump = [NSSet setWithObjects:[NSString class], [NSNumber class], [NSURL class], nil];
+    
+    [routes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if ([obj isKindOfClass:[NSInvocation class]] == NO){
+            for( Class c in autoDump){
+                if ([obj isKindOfClass:c] == YES){
+                    DDLogInfo(@"  \"%@\" = [%@]%@", key, c, [obj description]);
+                    return;
+                }
+            }
+            DDLogInfo(@"  \"%@\" = %@", key, [obj class]);
+        } else {
+            NSInvocation* i = obj;
+            DDLogInfo(@"  \"%@\" -> [%@ %@]", key, [i.target class], NSStringFromSelector(i.selector));
+        }
+    }];
+    DDLogInfo(@"Askable dump list end");
+}
 @end

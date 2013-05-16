@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BootLoader.h"
 
-#define BOOT_SEQUENCE_ANALYZE  1
+#define BOOT_SEQUENCE_ANALYZE  0
 #if defined(BOOT_SEQUENCE_ANALYZE) && (BOOT_SEQUENCE_ANALYZE == 1)
     #define ANALYZER(code)  code
 #else
