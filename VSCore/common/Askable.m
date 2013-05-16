@@ -92,4 +92,18 @@ static NSMutableDictionary* routes;
     
 }
 
++(id)requireObject:(NSString*)key{
+    id res;
+    BOOL found = [self askFor:key result:&res];
+    ANALYZER(
+             BootSequenceAnalyzer* analyzer = [BootSequenceAnalyzer getInstance];
+             [analyzer askedForObject:key isNil:(res == nil || found == NO) inThread:[NSThread currentThread]];
+    )//ANALYZER
+    NSAssert(found == YES, @"Required object not found for askable key: %@", key);
+    return res;
+}
+
++(void)destroy{
+    [routes removeAllObjects];
+}
 @end

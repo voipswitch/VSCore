@@ -97,4 +97,19 @@
  */
 +(id)askForObject:(NSString*)key defaultValue:(id)def;
 
+/**
+ * Request for object value for given key. If key doesn't exist assertion is thrown.
+ * This method will hard cast any result value to object, so if returning type for key
+ * is not object then it may lead to strange results!
+ * @param key identifier for which value should be obtained
+ * @return value for given key or def if key is unknown
+ */
++(id)requireObject:(NSString*)key;
+
+/**
+ * If you want to perform full purge of object stored in Askable call this method.
+ * It's created due specifics requirements of destruction, and designed to be used in
+ * {@link UIApplicationDelegate#applicationWillTerminate:}
+ */
++(void)destroy;
 @end

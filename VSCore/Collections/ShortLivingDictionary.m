@@ -18,6 +18,7 @@
     if (self != nil){
         self.timeToLive = aTimeToLive;
         self.storageFile = filename;
+        NSAssert(filename != nil, @"Storage must not be nil!");
     }
     return self;
 }
@@ -37,7 +38,6 @@
 }
 
 -(void)presistAndDestroy{
-//    NSAssert(store != nil,@"uppss, store shouldn't be nil! Looks like logic error");
     if (store != nil){
         NSString* file = [FileHelper libraryPath:@"storage"];
         file = [file stringByAppendingString:self.storageFile];
@@ -82,6 +82,10 @@
 
 - (id)objectForKey:(id)aKey{
     return [[self store] objectForKey:aKey];
+}
+
+- (NSString*) description {
+    return [NSString stringWithFormat:@"[ShortLivingDictionary TTL:%f, storageFile:{library}/%@ objects:%@]", self.timeToLive, self.storageFile, [self store]];
 }
 
 @end
