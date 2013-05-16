@@ -185,6 +185,9 @@
 		1963C097169593A800FAA498 /* Reflected.h in Headers */ = {isa = PBXBuildFile; fileRef = 1963C0941695932D00FAA498 /* Reflected.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		196928641688833000C6279B /* NSString+Email.h in Headers */ = {isa = PBXBuildFile; fileRef = 196928621688833000C6279B /* NSString+Email.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		196928651688833000C6279B /* NSString+Email.m in Sources */ = {isa = PBXBuildFile; fileRef = 196928631688833000C6279B /* NSString+Email.m */; };
+		197A096E1744F2830025D3D7 /* BootLoader+Askable.h in Headers */ = {isa = PBXBuildFile; fileRef = 197A096C1744F2830025D3D7 /* BootLoader+Askable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		197A096F1744F2830025D3D7 /* BootLoader+Askable.m in Sources */ = {isa = PBXBuildFile; fileRef = 197A096D1744F2830025D3D7 /* BootLoader+Askable.m */; };
+		197A09701744F6160025D3D7 /* BootLoader+Askable.m in Headers */ = {isa = PBXBuildFile; fileRef = 197A096D1744F2830025D3D7 /* BootLoader+Askable.m */; };
 		198A021116AD692D00D35FF4 /* NSMutableDictionary+Extended.h in Headers */ = {isa = PBXBuildFile; fileRef = 198A020F16AD692D00D35FF4 /* NSMutableDictionary+Extended.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		198A021216AD692D00D35FF4 /* NSMutableDictionary+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = 198A021016AD692D00D35FF4 /* NSMutableDictionary+Extended.m */; };
 		1993E160164805C800DA4CCD /* RunLoopingThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 1993E15E164805C800DA4CCD /* RunLoopingThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -435,6 +438,8 @@
 		1963C0941695932D00FAA498 /* Reflected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reflected.h; sourceTree = "<group>"; };
 		196928621688833000C6279B /* NSString+Email.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Email.h"; sourceTree = "<group>"; };
 		196928631688833000C6279B /* NSString+Email.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Email.m"; sourceTree = "<group>"; };
+		197A096C1744F2830025D3D7 /* BootLoader+Askable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BootLoader+Askable.h"; path = "ExecuteDistribution/BootLoader+Askable.h"; sourceTree = "<group>"; };
+		197A096D1744F2830025D3D7 /* BootLoader+Askable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BootLoader+Askable.m"; path = "ExecuteDistribution/BootLoader+Askable.m"; sourceTree = "<group>"; };
 		198A020F16AD692D00D35FF4 /* NSMutableDictionary+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Extended.h"; sourceTree = "<group>"; };
 		198A021016AD692D00D35FF4 /* NSMutableDictionary+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Extended.m"; sourceTree = "<group>"; };
 		1993E15E164805C800DA4CCD /* RunLoopingThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunLoopingThread.h; sourceTree = "<group>"; };
@@ -705,6 +710,8 @@
 				191C1F74164016AB00E43223 /* QueuedRequest.m */,
 				191C1F7F16401EE600E43223 /* RequestExecutor.h */,
 				191C1F701640107A00E43223 /* UnivListener.h */,
+				197A096C1744F2830025D3D7 /* BootLoader+Askable.h */,
+				197A096D1744F2830025D3D7 /* BootLoader+Askable.m */,
 			);
 			name = ExecuteDistribiution;
 			sourceTree = "<group>";
@@ -1372,10 +1379,12 @@
 				E39B550216BBBCA2007C1B81 /* NSData_Base64.h in Headers */,
 				3120B4FF16F7113D00DDA3E1 /* DDXMLElement+Helper.h in Headers */,
 				193834FC170C37F500C62446 /* Utils+Collections.h in Headers */,
+				197A096E1744F2830025D3D7 /* BootLoader+Askable.h in Headers */,
 				19F98CAD168C62F600BA9A6A /* zlib.h in Headers */,
 				19F98CAF168C62F600BA9A6A /* zutil.h in Headers */,
 				19F98C94168C62F600BA9A6A /* ZipWriteStream.h in Headers */,
 				E391AC6716B2DE9D003CA031 /* UIView+FirstResponder.h in Headers */,
+				197A09701744F6160025D3D7 /* BootLoader+Askable.m in Headers */,
 				E3984FF116F876CF00E28F51 /* BootSequenceAnalyzer.h in Headers */,
 				E3984FF316F876CF00E28F51 /* BootSequenceForKey.h in Headers */,
 				EAB9409F17031B8000B77E49 /* DDCustomFileLogger.h in Headers */,
@@ -1660,6 +1669,7 @@
 				E3984FF416F876CF00E28F51 /* BootSequenceForKey.m in Sources */,
 				EAB940A117031B8000B77E49 /* DDCustomFileLogger.m in Sources */,
 				193834FD170C37F500C62446 /* Utils+Collections.m in Sources */,
+				197A096F1744F2830025D3D7 /* BootLoader+Askable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

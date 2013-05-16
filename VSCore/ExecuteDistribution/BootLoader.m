@@ -45,6 +45,7 @@
     releaseAndNil(modes);
     releaseAndNil(buildedObject);
     releaseAndNil(simpleBlock);
+    releaseAndNil(externalBindTarget);
     [super dealloc];
 }
 
@@ -157,7 +158,7 @@
             NSAssert(NO, @"Uppss no node for key:%@", key);
             return;
         }
-        node->externalBindTarget = target;
+        node->externalBindTarget = [target retain];
         node->externalBindSelector = sel;
     }
 }
