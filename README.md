@@ -29,3 +29,20 @@ VSCore compiles into framework which should be put into your project. You need a
 * libsqlite3.dylib
 
 This document is still under work, it will be upgraded in near future. Feel free to contact us if you need some more clarifications in any parts.
+
+Where to begin?
+===============
+
+Although VSCore contains many classes and mechanisms we recommand you to take close look at those:
+
+* Common - Askable
+* Common - Transform
+* ExecuteDistribiution - AdaptiveExecutor
+* Storage - FileHelper, Autoserializer
+* Common - Transform
+
+They are a lot of help in our every day usage, and we believed they are worth mentioning. Also you should look into 
+* Reflection
+* Storage - SQLiteHelper, Autoserializer
+
+If you using SQLLite, those classes/mechanisms are simple ORM implementation. Hope you enjoy it. 
