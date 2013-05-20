@@ -46,6 +46,33 @@ static const char * getPropertyType(objc_property_t property) {
     return "";
 }
 
+static const char * getRawPropertyType(objc_property_t property) {
+    const char *attributes = property_getAttributes(property);
+    char buffer[1 + strlen(attributes)];
+    strcpy(buffer, attributes);
+    char *state = buffer, *attribute;
+    while ((attribute = strsep(&state, ",")) != NULL) {
+        if (attribute[0] == 'T' && attribute[1] != '@') {
+            // it's a C primitive type:
+            /*
+             if you want a list of what will be returned for these primitives, search online for
+             "objective-c" "Property Attribute Description Examples"
+             apple docs list plenty of examples of what you get for int "i", long "l", unsigned "I", struct, etc.
+             */
+            return (const char *)[[NSData dataWithBytes:(attribute + 1) length:strlen(attribute) - 1] bytes];
+        }
+        else if (attribute[0] == 'T' && attribute[1] == '@' && strlen(attribute) == 2) {
+            // it's an ObjC id type:
+            return "@"; //same as _C_ID
+        }
+        else if (attribute[0] == 'T' && attribute[1] == '@') {
+            // it's another ObjC object type:
+            return "@";//same as _C_ID
+        }
+    }
+    return "";
+}
+
 @implementation ReflectionHelper
 
 +(void)initialize{
@@ -86,6 +113,30 @@ static const char * getPropertyType(objc_property_t property) {
         [result removeObjectsInArray:arr];
     }
     [cachedFieldsList setValue:result forKey:name];
+    
+    return result;
+}
+
++(NSDictionary*)fieldsRawInfo:(Class)aClass outName:(NSString**)outName{
+    NSAssert(aClass != NULL, @"Illegal usage, passed class descriptor can't be NULL!");
+    NSString* name = [NSString stringWithUTF8String:class_getName(aClass)];
+    if (outName != nil){
+        *outName = name;
+    }
+    NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    unsigned int outCount, i;
+    objc_property_t *properties = class_copyPropertyList(aClass, &outCount);
+    for (i = 0; i < outCount; i++) {
+        objc_property_t property = properties[i];
+        const char *propName = property_getName(property);
+        if(propName != NULL) {
+            const char *propType = getRawPropertyType(property);
+            NSString *propertyName = [NSString stringWithUTF8String:propName];
+            NSString *propertyType = [NSString stringWithUTF8String:propType];
+            [result setObject:propertyType forKey:propertyName];
+        }
+    }
+    free(properties);
     
     return result;
 }

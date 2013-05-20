@@ -305,6 +305,9 @@
 		19F35AB7162852D40027CA8F /* ReflectionHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F359E61628483A0027CA8F /* ReflectionHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		19F35AB8162852D40027CA8F /* FileHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F359E91628483A0027CA8F /* FileHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		19F35ABA162852D40027CA8F /* SQLiteHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F359ED1628483A0027CA8F /* SQLiteHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		19F44CC0174A143800BFA26A /* PropertyPhantom.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F44CBE174A143800BFA26A /* PropertyPhantom.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		19F44CC1174A143800BFA26A /* PropertyPhantom.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F44CBF174A143800BFA26A /* PropertyPhantom.m */; };
+		19F44CC5174A1DCF00BFA26A /* PropertyPhantom.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F44CBE174A143800BFA26A /* PropertyPhantom.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		19F6DDF1167624E4005F427D /* SQLiteHelperTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F6DDEF167624E4005F427D /* SQLiteHelperTests.h */; };
 		19F6DDF2167624E4005F427D /* SQLiteHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F6DDF0167624E4005F427D /* SQLiteHelperTests.m */; };
 		19F98C83168C62F600BA9A6A /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F98C54168C62F600BA9A6A /* crypt.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -365,6 +368,10 @@
 		E3984FF416F876CF00E28F51 /* BootSequenceForKey.m in Sources */ = {isa = PBXBuildFile; fileRef = E3984FF016F876CF00E28F51 /* BootSequenceForKey.m */; };
 		E39B550216BBBCA2007C1B81 /* NSData_Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = E39B550016BBBCA2007C1B81 /* NSData_Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E39B550316BBBCA2007C1B81 /* NSData_Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E39B550116BBBCA2007C1B81 /* NSData_Base64.m */; };
+		E3DD8D8E174646F700DCAF36 /* UIDevice+machine.h in Headers */ = {isa = PBXBuildFile; fileRef = E3DD8D8C174646F700DCAF36 /* UIDevice+machine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E3DD8D8F174646F700DCAF36 /* UIDevice+machine.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DD8D8D174646F700DCAF36 /* UIDevice+machine.m */; };
+		EA99509D17464B2200ECCB3B /* UIDevice+IdentifierAddition.h in Headers */ = {isa = PBXBuildFile; fileRef = EA99509B17464B2100ECCB3B /* UIDevice+IdentifierAddition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA99509E17464B2200ECCB3B /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = EA99509C17464B2200ECCB3B /* UIDevice+IdentifierAddition.m */; };
 		EAB9409E17031B8000B77E49 /* DDCustomFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = EAB9409C17031B8000B77E49 /* DDCustomFileLogger.h */; };
 		EAB9409F17031B8000B77E49 /* DDCustomFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = EAB9409C17031B8000B77E49 /* DDCustomFileLogger.h */; };
 		EAB940A017031B8000B77E49 /* DDCustomFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9409D17031B8000B77E49 /* DDCustomFileLogger.m */; };
@@ -561,6 +568,8 @@
 		19F359EA1628483A0027CA8F /* FileHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileHelper.m; sourceTree = "<group>"; };
 		19F359ED1628483A0027CA8F /* SQLiteHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteHelper.h; sourceTree = "<group>"; };
 		19F359EE1628483A0027CA8F /* SQLiteHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteHelper.m; sourceTree = "<group>"; };
+		19F44CBE174A143800BFA26A /* PropertyPhantom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyPhantom.h; sourceTree = "<group>"; };
+		19F44CBF174A143800BFA26A /* PropertyPhantom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyPhantom.m; sourceTree = "<group>"; };
 		19F6DDEF167624E4005F427D /* SQLiteHelperTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteHelperTests.h; sourceTree = "<group>"; };
 		19F6DDF0167624E4005F427D /* SQLiteHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteHelperTests.m; sourceTree = "<group>"; };
 		19F98C54168C62F600BA9A6A /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
@@ -618,6 +627,10 @@
 		E3984FF016F876CF00E28F51 /* BootSequenceForKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BootSequenceForKey.m; path = ExecuteDistribution/BootSequenceForKey.m; sourceTree = "<group>"; };
 		E39B550016BBBCA2007C1B81 /* NSData_Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSData_Base64.h; sourceTree = "<group>"; };
 		E39B550116BBBCA2007C1B81 /* NSData_Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSData_Base64.m; sourceTree = "<group>"; };
+		E3DD8D8C174646F700DCAF36 /* UIDevice+machine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+machine.h"; sourceTree = "<group>"; };
+		E3DD8D8D174646F700DCAF36 /* UIDevice+machine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+machine.m"; sourceTree = "<group>"; };
+		EA99509B17464B2100ECCB3B /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
+		EA99509C17464B2200ECCB3B /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
 		EAB9409C17031B8000B77E49 /* DDCustomFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDCustomFileLogger.h; sourceTree = "<group>"; };
 		EAB9409D17031B8000B77E49 /* DDCustomFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDCustomFileLogger.m; sourceTree = "<group>"; };
 		EAB940A21703301000B77E49 /* DDCustomFileLoggerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDCustomFileLoggerTests.h; sourceTree = "<group>"; };
@@ -1058,6 +1071,10 @@
 				19D3151B1675DE4800320F90 /* Utils+UserDefaults.m */,
 				190BED8B16663DBA0003DEF2 /* NSDate+Format.h */,
 				190BED8C16663DBA0003DEF2 /* NSDate+Format.m */,
+				E3DD8D8C174646F700DCAF36 /* UIDevice+machine.h */,
+				E3DD8D8D174646F700DCAF36 /* UIDevice+machine.m */,
+				EA99509B17464B2100ECCB3B /* UIDevice+IdentifierAddition.h */,
+				EA99509C17464B2200ECCB3B /* UIDevice+IdentifierAddition.m */,
 				190BED8D16663DBA0003DEF2 /* NSString+MD5Addition.h */,
 				190BED8E16663DBA0003DEF2 /* NSString+MD5Addition.m */,
 				19080DCD162C22410009C567 /* StringUtils.h */,
@@ -1089,6 +1106,8 @@
 		19F359E51628483A0027CA8F /* Reflection */ = {
 			isa = PBXGroup;
 			children = (
+				19F44CBE174A143800BFA26A /* PropertyPhantom.h */,
+				19F44CBF174A143800BFA26A /* PropertyPhantom.m */,
 				19F359E61628483A0027CA8F /* ReflectionHelper.h */,
 				19F359E71628483A0027CA8F /* ReflectionHelper.m */,
 				1963C0941695932D00FAA498 /* Reflected.h */,
@@ -1255,6 +1274,7 @@
 				191C1F75164016AB00E43223 /* QueuedRequest.h in Headers */,
 				191C1F7B16401E4C00E43223 /* AdaptiveExecutor.h in Headers */,
 				191C1F911640262F00E43223 /* AdaptiveDispatcher.h in Headers */,
+				19F44CC5174A1DCF00BFA26A /* PropertyPhantom.h in Headers */,
 				1906A26D162D525B00903BAA /* FileHelper.h in Headers */,
 				1906A26F162D525B00903BAA /* SQLiteHelper.h in Headers */,
 				1906A270162D525B00903BAA /* VSCore.h in Headers */,
@@ -1380,14 +1400,17 @@
 				3120B4FF16F7113D00DDA3E1 /* DDXMLElement+Helper.h in Headers */,
 				193834FC170C37F500C62446 /* Utils+Collections.h in Headers */,
 				197A096E1744F2830025D3D7 /* BootLoader+Askable.h in Headers */,
+				19F44CC0174A143800BFA26A /* PropertyPhantom.h in Headers */,
 				19F98CAD168C62F600BA9A6A /* zlib.h in Headers */,
 				19F98CAF168C62F600BA9A6A /* zutil.h in Headers */,
 				19F98C94168C62F600BA9A6A /* ZipWriteStream.h in Headers */,
 				E391AC6716B2DE9D003CA031 /* UIView+FirstResponder.h in Headers */,
+				E3DD8D8E174646F700DCAF36 /* UIDevice+machine.h in Headers */,
 				197A09701744F6160025D3D7 /* BootLoader+Askable.m in Headers */,
 				E3984FF116F876CF00E28F51 /* BootSequenceAnalyzer.h in Headers */,
 				E3984FF316F876CF00E28F51 /* BootSequenceForKey.h in Headers */,
 				EAB9409F17031B8000B77E49 /* DDCustomFileLogger.h in Headers */,
+				EA99509D17464B2200ECCB3B /* UIDevice+IdentifierAddition.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1670,6 +1693,9 @@
 				EAB940A117031B8000B77E49 /* DDCustomFileLogger.m in Sources */,
 				193834FD170C37F500C62446 /* Utils+Collections.m in Sources */,
 				197A096F1744F2830025D3D7 /* BootLoader+Askable.m in Sources */,
+				19F44CC1174A143800BFA26A /* PropertyPhantom.m in Sources */,
+				E3DD8D8F174646F700DCAF36 /* UIDevice+machine.m in Sources */,
+				EA99509E17464B2200ECCB3B /* UIDevice+IdentifierAddition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

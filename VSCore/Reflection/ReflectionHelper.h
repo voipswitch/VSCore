@@ -38,6 +38,18 @@
  * @return dictionary of names and types of public properties
  */
 +(NSDictionary*)fieldsDetailedInfo:(Class)aClass;
+
+/**
+ * Returns dictionary which holds names of all public properties for given class, with corresponding obj-c types for it (any object
+ * type is represented as "@" instead of class name as in {@link #fieldsDetailedInfo:}).
+ * It should be used to get info about name and type of each property, types are encoded using internall apple notation.
+ * Refer for comments in .m file to get more details.
+ * @param aClass definition to be examined and extracted
+ * @param[out] outName string representation of name of class
+ * @return dictionary of names and types of public properties
+ */
++(NSDictionary*)fieldsRawInfo:(Class)aClass outName:(NSString**)outName;
+
 /**
  * This works this same as {@link #fieldsDetailedInfo:}, however you can additionaly pass reference to string in which name of class is returned.
  * @param aClass definition to be examined and extracted
