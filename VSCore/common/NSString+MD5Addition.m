@@ -1,9 +1,9 @@
 //
 //  NSString+MD5Addition.m
-//  UIDeviceAddition
+//  VSCore, (C) VoipSwitch
 //
-//  Created by Georg Kitz on 20.08.11.
-//  Copyright 2011 Aurora Apps. All rights reserved.
+//  This file is part of VSCore, which is distributed under BSD-new license.
+//  Created by Bartłomiej Żarnowski on 20.05.2013.
 //
 
 #import "NSString+MD5Addition.h"
@@ -13,20 +13,23 @@
 
 - (NSString *) stringFromMD5{
     
-    if(self == nil || [self length] == 0)
+    if ([self length] == 0){
         return nil;
-    
-    const char *value = [self UTF8String];
-    
-    unsigned char outputBuffer[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(value, strlen(value), outputBuffer);
-    
-    NSMutableString *outputString = [[NSMutableString alloc] initWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
-    for(NSInteger count = 0; count < CC_MD5_DIGEST_LENGTH; count++){
-        [outputString appendFormat:@"%02x",outputBuffer[count]];
     }
     
-    return [outputString autorelease];
+    const char *cStr = [self UTF8String];
+    NSInteger len = [self lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+    unsigned char outputBuffer[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(cStr, len, outputBuffer);
+    
+    char buff[CC_MD5_DIGEST_LENGTH * 2 + 1];
+    
+    char* pBuf = &buff[0];
+    for(NSInteger t = 0; t < CC_MD5_DIGEST_LENGTH; t++){
+        pBuf += sprintf(pBuf, "%02x",outputBuffer[t]);
+    }
+
+    return [NSString stringWithUTF8String:&buff[0]];
 }
 
 @end
