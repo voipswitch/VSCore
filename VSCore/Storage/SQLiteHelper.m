@@ -273,8 +273,9 @@ static NSMutableDictionary* descrCache;
     [query deleteCharactersInRange:NSMakeRange([query length]-2, 2)];
 }
 
-+(void)appendLimitClausuleTo:(NSMutableString*)query value:(NSNumber*)value{
-    [query appendFormat:@" LIMIT %@",value];
++(void)appendLimitClausuleTo:(NSMutableString*)query value:(NSInteger)value{
+    NSAssert([[query lowercaseString] rangeOfString:@"limit"].location == NSNotFound, @"Limit already present!");
+    [query appendFormat:@" LIMIT %d", value];
 }
 
 +(NSMutableDictionary*)unpackRowFromStatement:(sqlite3_stmt*)statement withDescription:(NSDictionary*)tableDescr{
@@ -324,6 +325,19 @@ static NSMutableDictionary* descrCache;
     }
     
     return result;
+}
+
++(NSString*)getCommonDBLocation{
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentsDirectory = [paths objectAtIndex:0];
+    
+    [FileHelper createDirIfNeeded:documentsDirectory];
+    
+    if ([documentsDirectory characterAtIndex:[documentsDirectory length]-1] != '/'){
+        return [documentsDirectory stringByAppendingString:@"/"];
+    } else {
+        return documentsDirectory;
+    }
 }
 
 #pragma mark - Public routines
@@ -622,20 +636,20 @@ static NSMutableDictionary* descrCache;
 }
 
 +(NSMutableArray*)loadData:(NSDictionary*)keyFields atTable:(NSString*)tableName inDB:(sqlite3*)db{
-    return [SQLiteHelper loadData:keyFields atTable:tableName inDB:db order:nil limit:nil];
+    return [SQLiteHelper loadData:keyFields atTable:tableName inDB:db order:nil limit:0];
 }
 
-+(NSMutableArray*)loadData:(NSDictionary*)keyFields atTable:(NSString*)tableName inDB:(sqlite3*)db order:(NSArray*)order limit:(NSNumber*)limit{
++(NSMutableArray*)loadData:(NSDictionary*)keyFields atTable:(NSString*)tableName inDB:(sqlite3*)db order:(NSArray*)order limit:(NSInteger)limit{
     NSDictionary* descr = [SQLiteHelper describeTable:tableName inDB:db];
     NSAssert(descr != nil, @"No description for %@", tableName);
     NSMutableString* query = [NSMutableString stringWithFormat:@"SELECT * from %@", tableName];
     if ([keyFields count] > 0){
         [SQLiteHelper appendWhereClausuleTo:query describedBy:keyFields];
     }
-    if (order && order.count>0){
+    if ([order count] > 0){
         [SQLiteHelper appendOrderClausuleTo:query describedBy:order];
     }
-    if (limit && [limit intValue]>0){
+    if (limit > 0){
         [SQLiteHelper appendLimitClausuleTo:query value:limit];
     }
     sqlite3_stmt *statement;
@@ -684,7 +698,7 @@ static NSMutableDictionary* descrCache;
 
 +(sqlite3*)openDB:(NSString*)dbFileName assumeCommonLocation:(BOOL)cLoc createIfNeeded:(BOOL)doCreate{
     if (cLoc == YES){
-        dbFileName = [NSString stringWithFormat:@"%@%@", [FileHelper libraryPath:nil], dbFileName];
+        dbFileName = [NSString stringWithFormat:@"%@%@", [SQLiteHelper getCommonDBLocation], dbFileName];
     }
     
     DBCacheProxy* proxy = [openedDB objectForKey:dbFileName];

@@ -19,8 +19,8 @@
 +(id)loadSingleData:(Class)cl where:(NSDictionary*)keyFields;
 +(NSArray*)loadData:(Class)cl where:(NSDictionary*)keyFields;
 // Order - array of strings. If string start with "-" it will be desc, otherwise asc
-// Limit - if null or 0 than return all
-+(NSArray*)loadData:(Class)cl where:(NSDictionary*)keyFields order:(NSArray*)orderFields limit:(NSNumber*) limit;
+// Limit - if 0 than return all
++(NSArray*)loadData:(Class)cl where:(NSDictionary*)keyFields order:(NSArray*)orderFields limit:(NSInteger) limit;
 
 /**
  * Tries to rebuild link from object to database row. Primary key will be used to do this. Following conditions must be met:

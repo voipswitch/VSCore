@@ -182,11 +182,11 @@ static NSMutableDictionary* typesBind;
     return result;
 }
 
-+(NSArray*)loadData:(Class)cl where:(NSDictionary*)keyFields order:(NSArray*)orderFields limit:(NSNumber*) limit{
++(NSArray*)loadData:(Class)cl where:(NSDictionary*)keyFields order:(NSArray*)orderFields limit:(NSInteger) limit{
     TypeProxy* tp = [typesBind objectForKey:cl];
     NSAssert(tp != nil, @"Class %@ is not registered !", NSStringFromClass(cl));
     [self ensureDB:tp];
-    NSMutableArray* arr = [SQLiteHelper loadData:keyFields atTable:tp.tableName inDB:tp.db];
+    NSMutableArray* arr = [SQLiteHelper loadData:keyFields atTable:tp.tableName inDB:tp.db order:orderFields limit:limit];
     
     for(NSInteger t = 0, len = [arr count]; t < len; t++){
         NSMutableDictionary* r = [arr objectAtIndex:t];
@@ -216,7 +216,7 @@ static NSMutableDictionary* typesBind;
     return arr;
 }
 +(NSArray*)loadData:(Class)cl where:(NSDictionary*)keyFields{
-    return [AutoSerializer loadData:cl where:keyFields order:nil limit:nil];
+    return [AutoSerializer loadData:cl where:keyFields order:nil limit:0];
 }
 
 +(void)removeData:(id)obj{

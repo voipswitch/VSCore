@@ -96,7 +96,7 @@ typedef void(^RawSQLResultHandler)(sqlite3_stmt* statement);
  * @param limit how many wors to select, 0 od null if all
  * @return array of dictionaries
  */
-+(NSMutableArray*)loadData:(NSDictionary*)keyFields atTable:(NSString*)tableName inDB:(sqlite3*)db order:(NSArray*)order limit:(NSNumber*)limit;
++(NSMutableArray*)loadData:(NSDictionary*)keyFields atTable:(NSString*)tableName inDB:(sqlite3*)db order:(NSArray*)order limit:(NSInteger)limit;
 +(void)loadData:(NSDictionary*)keyFields atTable:(NSString*)tableName inDB:(sqlite3*)db withFactory:(FactoryBlock)factBlk andCollection:(id)col andColFiller:(FillerBlock)flrBlk;
 
 /**
