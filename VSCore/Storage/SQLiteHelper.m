@@ -42,8 +42,11 @@ static NSMutableDictionary* descrCache;
     typesTranslation = [[NSDictionary dictionaryWithObjectsAndKeys:
                         @"INTEGER", @"c",      //OBJ-C: bool (or character, not sure)
                         @"INTEGER(8)", @"q",   //OBJ-C: long long
+                        @"INTEGER(8)", @"Q",   //OBJ-C: unsigned long long
                         @"INTEGER", @"i",   //OBJ-C: NSInteger
+                        @"INTEGER", @"I",   //OBJ-C: NSUInteger
                         @"INTEGER", @"l",   //OBJ-C: long
+                        @"INTEGER", @"L",   //OBJ-C: unsigned long
                         @"REAL", @"f",      //OBJ-C: CGFloat
                         @"REAL", @"d",      //OBJ-C: double
                         @"REAL", @"NSNumber",   //OBJ-C: NSNumber
@@ -136,7 +139,7 @@ static NSMutableDictionary* descrCache;
     }
     
     NSInteger res = sqlite3_step(statement);
-    if (res != SQLITE_OK) {
+    if ((res != SQLITE_OK) && (res != SQLITE_DONE)) {
         DDLogError(@"[rT2]DB error: %s",sqlite3_errmsg(db));
     } else {
         //update descriptions cache
@@ -328,16 +331,7 @@ static NSMutableDictionary* descrCache;
 }
 
 +(NSString*)getCommonDBLocation{
-    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString* documentsDirectory = [paths objectAtIndex:0];
-    
-    [FileHelper createDirIfNeeded:documentsDirectory];
-    
-    if ([documentsDirectory characterAtIndex:[documentsDirectory length]-1] != '/'){
-        return [documentsDirectory stringByAppendingString:@"/"];
-    } else {
-        return documentsDirectory;
-    }
+    return [FileHelper libraryPath:nil];
 }
 
 #pragma mark - Public routines
@@ -371,7 +365,7 @@ static NSMutableDictionary* descrCache;
 
 +(BOOL)checkCompatibility:(NSDictionary*)tableDescr atTable:(NSString*)tableName inDB:(sqlite3*)db{
     NSDictionary* __block inDBDescr = [SQLiteHelper describeTable:tableName inDB:db];
-    if (inDBDescr == nil){
+    if ((inDBDescr == nil) || ([tableDescr count] > [inDBDescr count])) {
         return NO;
     }
     tableDescr = [SQLiteHelper translate:tableDescr];

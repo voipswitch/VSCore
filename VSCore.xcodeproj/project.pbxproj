@@ -380,6 +380,8 @@
 		EAB940A51703301000B77E49 /* DDCustomFileLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB940A31703301000B77E49 /* DDCustomFileLoggerTests.m */; };
 		EAB940A61703338000B77E49 /* BootSequenceAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = E3984FEE16F876CF00E28F51 /* BootSequenceAnalyzer.m */; };
 		EAB940A71703338300B77E49 /* BootSequenceForKey.m in Sources */ = {isa = PBXBuildFile; fileRef = E3984FF016F876CF00E28F51 /* BootSequenceForKey.m */; };
+		EAD8EF511760B60100BF596A /* NSThread+Block.h in Headers */ = {isa = PBXBuildFile; fileRef = EAD8EF4F1760B60100BF596A /* NSThread+Block.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAD8EF521760B60100BF596A /* NSThread+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD8EF501760B60100BF596A /* NSThread+Block.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -635,6 +637,8 @@
 		EAB9409D17031B8000B77E49 /* DDCustomFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDCustomFileLogger.m; sourceTree = "<group>"; };
 		EAB940A21703301000B77E49 /* DDCustomFileLoggerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDCustomFileLoggerTests.h; sourceTree = "<group>"; };
 		EAB940A31703301000B77E49 /* DDCustomFileLoggerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDCustomFileLoggerTests.m; sourceTree = "<group>"; };
+		EAD8EF4F1760B60100BF596A /* NSThread+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSThread+Block.h"; sourceTree = "<group>"; };
+		EAD8EF501760B60100BF596A /* NSThread+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSThread+Block.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -761,6 +765,8 @@
 		1993E15D164805C800DA4CCD /* Threading */ = {
 			isa = PBXGroup;
 			children = (
+				EAD8EF4F1760B60100BF596A /* NSThread+Block.h */,
+				EAD8EF501760B60100BF596A /* NSThread+Block.m */,
 				1993E163164805F800DA4CCD /* RWLock.h */,
 				1993E164164805F800DA4CCD /* RWLock.m */,
 				1993E15E164805C800DA4CCD /* RunLoopingThread.h */,
@@ -1411,6 +1417,7 @@
 				E3984FF316F876CF00E28F51 /* BootSequenceForKey.h in Headers */,
 				EAB9409F17031B8000B77E49 /* DDCustomFileLogger.h in Headers */,
 				EA99509D17464B2200ECCB3B /* UIDevice+IdentifierAddition.h in Headers */,
+				EAD8EF511760B60100BF596A /* NSThread+Block.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1696,6 +1703,7 @@
 				19F44CC1174A143800BFA26A /* PropertyPhantom.m in Sources */,
 				E3DD8D8F174646F700DCAF36 /* UIDevice+machine.m in Sources */,
 				EA99509E17464B2200ECCB3B /* UIDevice+IdentifierAddition.m in Sources */,
+				EAD8EF521760B60100BF596A /* NSThread+Block.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

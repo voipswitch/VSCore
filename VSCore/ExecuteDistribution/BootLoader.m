@@ -85,6 +85,7 @@
         BootNode* node = [[[BootNode alloc] init] autorelease];
         bootNodes[key] = node;
         
+        node->buildInCallerThread = inThisThread;
         node->simpleMode = YES;
         node->modes = [modes retain];
         node->priority = pri;
@@ -103,6 +104,7 @@
         BootNode* node = [[[BootNode alloc] init] autorelease];
         bootNodes[key] = node;
         
+        node->buildInCallerThread = inThisThread;
         node->simpleMode = YES;
         node->modes = [modes retain];
         node->priority = pri;
@@ -188,6 +190,7 @@
     } else {
         if (node->isExpSelStatic == YES){
             NSAssert(node->explicitSelector != nil, @"Static selector requested but no selector is given, for class:%@", node->classToBuild);
+
             Method m = class_getClassMethod(node->classToBuild, node->explicitSelector);
             char type[128];
             method_getReturnType(m, type, sizeof(type));
