@@ -11,6 +11,8 @@
 #import "BootSequenceAnalyzer.h"
 #import <objc/runtime.h>
 
+#import "Collections+subscripts.h"
+
 #ifndef releaseAndNil
 #define releaseAndNil(x) [x release]; x = nil
 #endif

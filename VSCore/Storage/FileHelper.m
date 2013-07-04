@@ -93,7 +93,7 @@
 +(NSString*)generateUniqueName:(NSString*)nameFormat onPath:(NSString*)path{
     if (path == nil){
         //get documents path
-        path = [FileHelper libraryPath: nil];
+        path = [FileHelper prefferedPath:nil withType:pathPrivateNonBackup];
     }
     if ([path hasSuffix:@"/"] == NO){
         path = [path stringByAppendingString:@"/"];
@@ -158,6 +158,38 @@
         libraryDirectory = [libraryDirectory stringByAppendingString:@"/"];
     }
     return libraryDirectory;
+}
+
++(NSString*)prefferedPath:(NSString*)subDir withType:(FileHelperPathType)pathType
+{
+    static NSArray* paths = nil;
+    if (paths == nil){
+        if(pathType == pathPrivateBackup || pathType == pathPrivateNonBackup){
+            paths = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) retain];
+        }else{
+            paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) retain];
+        }
+    }
+    
+    NSString* prefferedDirectory = [paths objectAtIndex:0];
+    
+    if(pathType == pathPrivateNonBackup || pathType == pathPublicNonBackup){
+        // Prevent iCloud backup
+        prefferedDirectory = [prefferedDirectory stringByAppendingPathComponent:@"/Caches/"];
+    }
+    
+    if ([subDir length] > 0){
+        if ([subDir characterAtIndex:0] != '/'){
+            subDir = [NSString stringWithFormat:@"/%@", subDir];
+        }
+        prefferedDirectory = [prefferedDirectory stringByAppendingPathComponent:subDir];
+    }
+    
+    [FileHelper createDirIfNeeded:prefferedDirectory];
+    if ([prefferedDirectory characterAtIndex:[prefferedDirectory length]-1] != '/'){
+        prefferedDirectory = [prefferedDirectory stringByAppendingString:@"/"];
+    }
+    return prefferedDirectory;
 }
 
 +(BOOL)fileExists:(id)path{

@@ -80,7 +80,7 @@
 }
 + (NSString*)parseSecsToHHMMSS:(unsigned int) val{
     long sec = val % 3600;
-    NSString *value = [NSString stringWithFormat:@"%02d:%02d:%02d",
+    NSString *value = [NSString stringWithFormat:@"%02d:%02ld:%02ld",
                        val / 3600,
                        sec / 60, sec % 60];
     return value;

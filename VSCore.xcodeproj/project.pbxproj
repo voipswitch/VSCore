@@ -360,6 +360,8 @@
 		3120B4FF16F7113D00DDA3E1 /* DDXMLElement+Helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3120B4FC16F7113C00DDA3E1 /* DDXMLElement+Helper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3120B50016F7113D00DDA3E1 /* DDXMLElement+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3120B4FD16F7113C00DDA3E1 /* DDXMLElement+Helper.m */; };
 		3120B50116F7113D00DDA3E1 /* DDXMLElement+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3120B4FD16F7113C00DDA3E1 /* DDXMLElement+Helper.m */; };
+		E3551506177C796C00B447C1 /* Collections+subscripts.h in Headers */ = {isa = PBXBuildFile; fileRef = E3551504177C796C00B447C1 /* Collections+subscripts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E3551507177C796C00B447C1 /* Collections+subscripts.m in Sources */ = {isa = PBXBuildFile; fileRef = E3551505177C796C00B447C1 /* Collections+subscripts.m */; };
 		E391AC6716B2DE9D003CA031 /* UIView+FirstResponder.h in Headers */ = {isa = PBXBuildFile; fileRef = E391AC6516B2DE9D003CA031 /* UIView+FirstResponder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E391AC6816B2DE9D003CA031 /* UIView+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = E391AC6616B2DE9D003CA031 /* UIView+FirstResponder.m */; };
 		E3984FF116F876CF00E28F51 /* BootSequenceAnalyzer.h in Headers */ = {isa = PBXBuildFile; fileRef = E3984FED16F876CF00E28F51 /* BootSequenceAnalyzer.h */; };
@@ -621,6 +623,8 @@
 		19F98C82168C62F600BA9A6A /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
 		3120B4FC16F7113C00DDA3E1 /* DDXMLElement+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DDXMLElement+Helper.h"; sourceTree = "<group>"; };
 		3120B4FD16F7113C00DDA3E1 /* DDXMLElement+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DDXMLElement+Helper.m"; sourceTree = "<group>"; };
+		E3551504177C796C00B447C1 /* Collections+subscripts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Collections+subscripts.h"; sourceTree = "<group>"; };
+		E3551505177C796C00B447C1 /* Collections+subscripts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Collections+subscripts.m"; sourceTree = "<group>"; };
 		E391AC6516B2DE9D003CA031 /* UIView+FirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FirstResponder.h"; sourceTree = "<group>"; };
 		E391AC6616B2DE9D003CA031 /* UIView+FirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FirstResponder.m"; sourceTree = "<group>"; };
 		E3984FED16F876CF00E28F51 /* BootSequenceAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BootSequenceAnalyzer.h; path = ExecuteDistribution/BootSequenceAnalyzer.h; sourceTree = "<group>"; };
@@ -708,6 +712,8 @@
 				191C1F4A163FD2F900E43223 /* RuledSet.m */,
 				193834FA170C37F500C62446 /* Utils+Collections.h */,
 				193834FB170C37F500C62446 /* Utils+Collections.m */,
+				E3551504177C796C00B447C1 /* Collections+subscripts.h */,
+				E3551505177C796C00B447C1 /* Collections+subscripts.m */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -1414,6 +1420,7 @@
 				E3DD8D8E174646F700DCAF36 /* UIDevice+machine.h in Headers */,
 				197A09701744F6160025D3D7 /* BootLoader+Askable.m in Headers */,
 				E3984FF116F876CF00E28F51 /* BootSequenceAnalyzer.h in Headers */,
+				E3551506177C796C00B447C1 /* Collections+subscripts.h in Headers */,
 				E3984FF316F876CF00E28F51 /* BootSequenceForKey.h in Headers */,
 				EAB9409F17031B8000B77E49 /* DDCustomFileLogger.h in Headers */,
 				EA99509D17464B2200ECCB3B /* UIDevice+IdentifierAddition.h in Headers */,
@@ -1704,6 +1711,7 @@
 				E3DD8D8F174646F700DCAF36 /* UIDevice+machine.m in Sources */,
 				EA99509E17464B2200ECCB3B /* UIDevice+IdentifierAddition.m in Sources */,
 				EAD8EF521760B60100BF596A /* NSThread+Block.m in Sources */,
+				E3551507177C796C00B447C1 /* Collections+subscripts.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

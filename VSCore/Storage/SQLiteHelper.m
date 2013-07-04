@@ -77,9 +77,9 @@ static NSMutableDictionary* descrCache;
         if ([key hasPrefix:@"#"] == YES){
             //this is Primary key marker
             NSAssert([obj isEqualToString:@"INTEGER"], @"Primary key muste be INTEGER");
-            [result appendFormat:@"%@ %@ PRIMARY KEY AUTOINCREMENT,", [key substringFromIndex:1], obj];
+            [result appendFormat:@"'%@' %@ PRIMARY KEY AUTOINCREMENT,", [key substringFromIndex:1], obj];
         } else {
-            [result appendFormat:@"%@ %@,", key, obj];
+            [result appendFormat:@"'%@' %@,", key, obj];
         }
     }];
     
@@ -244,7 +244,9 @@ static NSMutableDictionary* descrCache;
     const __block Class sClass = [NSString class];
     [keyFields enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL* stop){
         stripPrimKeyPrefix(key);
+        [query appendString:@"`"];
         [query appendString:key];
+        [query appendString:@"`"];
         if ([obj isKindOfClass: sClass] == YES){
             if ( [(NSString*)obj rangeOfString:@"%"].location != NSNotFound ) {
                 [query appendString:@"like ?"];
@@ -267,7 +269,9 @@ static NSMutableDictionary* descrCache;
             ASC=NO;
             column = [column substringFromIndex:1];
         }
+        [query appendString:@"`"];
         [query appendString:column];
+        [query appendString:@"`"];
         if(ASC==NO){
             [query appendString:@" DESC"];
         }
@@ -331,7 +335,7 @@ static NSMutableDictionary* descrCache;
 }
 
 +(NSString*)getCommonDBLocation{
-    return [FileHelper libraryPath:nil];
+    return [FileHelper prefferedPath:nil withType:pathPrivateBackup];
 }
 
 #pragma mark - Public routines
@@ -435,8 +439,9 @@ static NSMutableDictionary* descrCache;
     [objData enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL* stop){
         NSAssert([key hasPrefix:@"#"] == NO, @"Primary key shouldn't be here!");
         [values addObject:obj];
+        [fields appendString:@"`"];
         [fields appendString:key];
-        [fields appendString:@","];
+        [fields appendString:@"`,"];
         
         [placeholders appendString:@"?,"];
     }];

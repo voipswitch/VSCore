@@ -10,6 +10,8 @@
 #import "BootLoader.h"
 #import "CommonDefines.h"
 
+#import "Collections+subscripts.h"
+
 @implementation BootSequenceForKey
 
 @synthesize buildInThread;

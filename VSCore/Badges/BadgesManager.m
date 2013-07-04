@@ -24,21 +24,21 @@
 @implementation BadgesManager
 - (void)saveLastState {
 
-    NSString* path = [NSString stringWithFormat:@"%@%@", [FileHelper libraryPath:nil], @"badges_p.dic"];
+    NSString* path = [NSString stringWithFormat:@"%@%@", [FileHelper prefferedPath:nil withType:pathPrivateBackup], @"badges_p.dic"];
     [valueForProvider writeToFile:path atomically:YES];
 
-    path = [NSString stringWithFormat:@"%@%@", [FileHelper libraryPath:nil], @"badges_g.dic"];
+    path = [NSString stringWithFormat:@"%@%@", [FileHelper prefferedPath:nil withType:pathPrivateBackup], @"badges_g.dic"];
     [valueForGroup writeToFile:path atomically:YES];
 }
 
 - (void)loadLastState {
-    NSString* path = [NSString stringWithFormat:@"%@%@", [FileHelper libraryPath:nil], @"badges_p.dic"];
+    NSString* path = [NSString stringWithFormat:@"%@%@", [FileHelper prefferedPath:nil withType:pathPrivateBackup], @"badges_p.dic"];
     NSDictionary* old = [NSDictionary dictionaryWithContentsOfFile:path];
     if ([old count] != 0){
         [valueForProvider addEntriesFromDictionary:old];
     }
 
-    path = [NSString stringWithFormat:@"%@%@", [FileHelper libraryPath:nil], @"badges_g.dic"];
+    path = [NSString stringWithFormat:@"%@%@", [FileHelper prefferedPath:nil withType:pathPrivateBackup], @"badges_g.dic"];
     old = [NSDictionary dictionaryWithContentsOfFile:path];
     if ([old count] != 0){
         [valueForGroup addEntriesFromDictionary:old];

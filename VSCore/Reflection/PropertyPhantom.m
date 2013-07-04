@@ -11,6 +11,8 @@
 #import "ReflectionHelper.h"
 #import "CommonDefines.h"
 
+#import "Collections+subscripts.h"
+
 @implementation PropertyPhantom
 
 +(PropertyPhantom*)phantomFrom:(id)anyObject{

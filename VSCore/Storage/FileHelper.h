@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    pathPrivateBackup,       //for files not accessible via iTunes but backuped by iCloud
+    pathPrivateNonBackup,    //for files not accessible via iTunes and not backuped by iCloud
+    pathPublicBackup,        //for files accessible via iTunes but backuped by iCloud
+    pathPublicNonBackup      //for files accessible via iTunes and not backuped by iCloud
+} FileHelperPathType;
+
 @interface FileHelper : NSObject
 
 /**
@@ -74,7 +81,8 @@
 /**
  * Generates random name and returns fully qualified path to this file (file is not
  * created). If path is not given (nil) then it's obtaind by call to
- * [FileHelper libraryPath:nil]. If path is given then only file name is generated
+ * [FileHelper prefferedPath:nil withType:pathPrivateNonBackup]. If path is given 
+ * then only file name is generated
  * using nameFormat format, substring '[gen]' must exist and it's used to generate 
  * random part of filename.
  * Call to this function guarantees that generated path doesn't point to any existing
@@ -84,7 +92,7 @@
  * 'test_[gen]_el.dat' -> 'test_53672DFA-152F_el.dat'
  * @param path where file should be stored, or nil if default path should be taken.
  * @param ext file extension, if nil then no extension (and '.' sign) will be appended
- * @return fully qualified path to rangom generated filename.
+ * @return fully qualified path to random generated filename.
  */
 +(NSString*)generateUniqueName:(NSString*)nameFormat onPath:(NSString*)path;
 
@@ -95,9 +103,9 @@
  * path exist (if not it's created). Returned path will end with '/' character.
  * @param subDir last part of path which should be included to returned path or nil
  * @return path at which data can be stored.
+ * @deprecated Use {@link #prefferedPath:withType:} instead.
  */
-+(NSString*)documentsPath:(NSString*)subDir;
-
++(NSString*)documentsPath:(NSString*)subDir DEPRECATED_ATTRIBUTE; 
 
 /**
  * Returns path at which data should be stored by application in library directory.
@@ -106,8 +114,20 @@
  * with '/' character.
  * @param subDir last part of path which should be included to returned path or nil
  * @return path at which data can be stored.
+ * @deprecated Use {@link #prefferedPath:withType:} instead.
  */
-+(NSString*)libraryPath:(NSString*)subDir;
++(NSString*)libraryPath:(NSString*)subDir DEPRECATED_ATTRIBUTE;
+
+/**
+ * Returns path at which data should be stored by application.
+ * It also includes given subDir (however it may be nil) to returned path. Method
+ * checks if returned path exist (if not it's created). Returned path will end
+ * with '/' character.
+ * @param subDir last part of path which should be included to returned path or nil
+ * @param pathType determine if file at the path is accesible via iTunes or/and backup by iCloud
+ * @return path at which data can be stored.
+ */
++(NSString*)prefferedPath:(NSString*)subDir withType:(FileHelperPathType)pathType;
 
 /**
  * Check if file exists, file may be pointed as NSString with fully qualified path

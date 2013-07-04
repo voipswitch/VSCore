@@ -39,7 +39,7 @@
 
 -(void)presistAndDestroy{
     if (store != nil){
-        NSString* file = [FileHelper libraryPath:@"storage"];
+        NSString* file = [FileHelper prefferedPath:@"storage" withType:pathPrivateNonBackup];
         file = [file stringByAppendingString:self.storageFile];
         [store writeToFile:file atomically:YES];
         releaseAndNil(store);
@@ -49,7 +49,7 @@
 
 -(NSMutableDictionary*)store{
     if (store == nil){
-        NSString* file = [FileHelper libraryPath:@"storage"];
+        NSString* file = [FileHelper prefferedPath:@"storage" withType:pathPrivateNonBackup];
         file = [file stringByAppendingString:self.storageFile];
         store = [[NSMutableDictionary alloc] initWithContentsOfFile:file];
         if (store == nil){

@@ -11,6 +11,8 @@
 #import "CommonDefines.h"
 #import "Askable.h"
 
+#import "Collections+subscripts.h"
+
 static BootSequenceAnalyzer* analyzer = nil;
 
 @implementation BootSequenceAnalyzer
