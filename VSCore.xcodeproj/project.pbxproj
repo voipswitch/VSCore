@@ -113,6 +113,8 @@
 		192B0F14165E5C7D00A5955A /* IOLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 192B0F11165E5C7D00A5955A /* IOLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		192B0F15165E5C7D00A5955A /* IOLayerImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 192B0F12165E5C7D00A5955A /* IOLayerImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		192B0F16165E5C7D00A5955A /* IOLayerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 192B0F13165E5C7D00A5955A /* IOLayerImpl.m */; };
+		192BBEA1178E849700B7531B /* NSString+urlEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 192BBE9F178E849700B7531B /* NSString+urlEncoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		192BBEA2178E849700B7531B /* NSString+urlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 192BBEA0178E849700B7531B /* NSString+urlEncoding.m */; };
 		192D4E3F1663B0CA000141ED /* SQLBonded.h in Headers */ = {isa = PBXBuildFile; fileRef = 193F3444165FC40600236F1C /* SQLBonded.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		192D4E5C1663C0AC000141ED /* ProgressiveContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 192D4E5B1663C0AC000141ED /* ProgressiveContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		19323FEC165D0A9D004368A7 /* CacheTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 19323FEA165D0A9D004368A7 /* CacheTests.h */; };
@@ -426,6 +428,8 @@
 		192B0F11165E5C7D00A5955A /* IOLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOLayer.h; sourceTree = "<group>"; };
 		192B0F12165E5C7D00A5955A /* IOLayerImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOLayerImpl.h; sourceTree = "<group>"; };
 		192B0F13165E5C7D00A5955A /* IOLayerImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOLayerImpl.m; sourceTree = "<group>"; };
+		192BBE9F178E849700B7531B /* NSString+urlEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+urlEncoding.h"; sourceTree = "<group>"; };
+		192BBEA0178E849700B7531B /* NSString+urlEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+urlEncoding.m"; sourceTree = "<group>"; };
 		192D4E5B1663C0AC000141ED /* ProgressiveContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressiveContainer.h; sourceTree = "<group>"; };
 		19323FEA165D0A9D004368A7 /* CacheTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheTests.h; sourceTree = "<group>"; };
 		19323FEB165D0A9D004368A7 /* CacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheTests.m; sourceTree = "<group>"; };
@@ -1097,6 +1101,8 @@
 				1913FF301648FFC0002B5CAD /* Transform.h */,
 				1913FF311648FFC0002B5CAD /* Transform.m */,
 				19D315231675E1FF00320F90 /* CommonAskableKeys.h */,
+				192BBE9F178E849700B7531B /* NSString+urlEncoding.h */,
+				192BBEA0178E849700B7531B /* NSString+urlEncoding.m */,
 			);
 			name = Common;
 			path = common;
@@ -1418,6 +1424,7 @@
 				19F98C94168C62F600BA9A6A /* ZipWriteStream.h in Headers */,
 				E391AC6716B2DE9D003CA031 /* UIView+FirstResponder.h in Headers */,
 				E3DD8D8E174646F700DCAF36 /* UIDevice+machine.h in Headers */,
+				192BBEA1178E849700B7531B /* NSString+urlEncoding.h in Headers */,
 				197A09701744F6160025D3D7 /* BootLoader+Askable.m in Headers */,
 				E3984FF116F876CF00E28F51 /* BootSequenceAnalyzer.h in Headers */,
 				E3551506177C796C00B447C1 /* Collections+subscripts.h in Headers */,
@@ -1712,6 +1719,7 @@
 				EA99509E17464B2200ECCB3B /* UIDevice+IdentifierAddition.m in Sources */,
 				EAD8EF521760B60100BF596A /* NSThread+Block.m in Sources */,
 				E3551507177C796C00B447C1 /* Collections+subscripts.m in Sources */,
+				192BBEA2178E849700B7531B /* NSString+urlEncoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

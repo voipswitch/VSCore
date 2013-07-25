@@ -14,23 +14,22 @@
 /*
  * @method uniqueDeviceIdentifier
  * @description use this method when you need a unique identifier in one app.
- * It generates a hash from the MAC-address in combination with the bundle identifier
- * of your app.
+ * It generates random number and store it in keyChain. It should be constant accross
+ * several application reinstalations. It's quasiunique for this application.
  */
 - (NSString*)uniqueDeviceIdentifier;
 
 /*
  * @method uniqueGlobalDeviceIdentifier
  * @description use this method when you need a unique global identifier to track a device
- * with multiple apps. as example a advertising network will use this method to track the device
- * from different apps.
- * It generates a hash from the MAC-address only.
+ * with multiple apps. 
  */
 - (NSString*)uniqueGlobalDeviceIdentifier;
 
 /**
  * Returns MAC address of en0 interface for this device in form xx:xx:xx:xx:xx:xx
  * @return MAC address or nil if something goes wrong.
+ * @deprecated This method will not work correctly in iOS 7.0
  */
-- (NSString*)macAddress;
+- (NSString*)macAddress DEPRECATED_ATTRIBUTE;
 @end
