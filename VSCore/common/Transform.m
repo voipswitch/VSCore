@@ -46,29 +46,43 @@ static NSMutableDictionary* regTransformers;
 }
 
 +(void)registerTransformBlock:(TransformerBlock)block forPurpouse:(NSString*)purpose{
-    BlockTransformer* transformer = [[[BlockTransformer alloc] initWithBlock:block] autorelease];
-    [regTransformers setObject:transformer forKey:purpose];
-    DDLogVerbose(@"Registering block transformer for purpose %@", purpose);
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0), ^{
+        BlockTransformer* transformer = [[[BlockTransformer alloc] initWithBlock:block] autorelease];
+        [regTransformers setObject:transformer forKey:purpose];
+        DDLogVerbose(@"Registering block transformer for purpose %@", purpose);
+    });
 }
 
 +(void)registerTransformer:(id<Transformer>)transformer forPurpouse:(NSString*)purpose{
-    [regTransformers setObject:transformer forKey:purpose];
-    DDLogVerbose(@"Registering transformer %@ for purpose %@", transformer, purpose);
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0), ^{
+        [regTransformers setObject:transformer forKey:purpose];
+        DDLogVerbose(@"Registering transformer %@ for purpose %@", transformer, purpose);
+    });
 }
 
 +(void)unregisterTransformerForPurpouse:(NSString*)purpose{
-    [regTransformers removeObjectForKey:purpose];
-    DDLogVerbose(@"Unregistering transformer for purpose %@", purpose);
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0), ^{
+        [regTransformers removeObjectForKey:purpose];
+        DDLogVerbose(@"Unregistering transformer for purpose %@", purpose);
+    });
 }
 
 +(id)transform:(id)what into:(NSString*)purpose{
-    id<Transformer> tr = [regTransformers objectForKey:purpose];
-    return [tr transform:what into:purpose];
+    __block id result;
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0), ^{
+        id<Transformer> tr = [regTransformers objectForKey:purpose];
+        result = [tr transform:what into:purpose];
+    });
+    return result;
 }
 
 +(id)transform:(id)what into:(NSString*)purpose withData:(id)obj{
-    id<Transformer> tr = [regTransformers objectForKey:purpose];
-    return [tr transform:what into:purpose withData:obj];
+    __block id result;
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0), ^{
+        id<Transformer> tr = [regTransformers objectForKey:purpose];
+        result = [tr transform:what into:purpose withData:obj];
+    });
+    return result;
 }
 
 @end
