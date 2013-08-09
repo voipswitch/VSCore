@@ -59,9 +59,9 @@
     SecRandomCopyBytes(kSecRandomDefault, sizeof(char) * 32, &pool[0]);
     CFAbsoluteTime timestamp = CFAbsoluteTimeGetCurrent();
     memcpy(&pool[4], &timestamp, sizeof(timestamp));
-    NSString* result = [[NSData dataWithBytes:&pool[0] length:32] base64EncodedString];
-    if ([result length] > 32){
-        result = [result substringToIndex:32];
+    NSMutableString* result = [[[NSMutableString alloc] initWithString:@""] autorelease];
+    for (int i=0; i<16; i++) {
+        [result appendFormat:@"%02X", pool[i]];
     }
     return result;
 }
