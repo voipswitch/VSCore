@@ -1,0 +1,3 @@
+[submodule "VSCore/3rdParty/AFNetworking"]
+	path = VSCore/3rdParty/AFNetworking
+	url = https://github.com/AFNetworking/AFNetworking/
