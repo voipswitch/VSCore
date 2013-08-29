@@ -1,3 +1,6 @@
 [submodule "VSCore/3rdParty/AFNetworking"]
 	path = VSCore/3rdParty/AFNetworking
 	url = https://github.com/AFNetworking/AFNetworking/
+[submodule "VSCore/3rdParty/AFKissXMLRequestOperation"]
+	path = VSCore/3rdParty/AFKissXMLRequestOperation
+	url = https://github.com/AFNetworking/AFKissXMLRequestOperation
