@@ -546,7 +546,8 @@ static NSMutableDictionary* descrCache;
     
     if (sqlite3_prepare_v2(db, [query UTF8String], -1, &statement, NULL) != SQLITE_OK){
         DDLogError(@"[5]DB error: %s",sqlite3_errmsg(db));
-        return [NSDictionary dictionary];
+        NSLog(@"[5]DB error: %s",sqlite3_errmsg(db));
+        return [NSMutableDictionary dictionary];
     }
     
     [SQLiteHelper bindWhereClausuleTo:statement describedBy:keyFields startIndex:1];
