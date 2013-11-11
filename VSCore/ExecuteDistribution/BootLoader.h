@@ -94,7 +94,7 @@ typedef void(^ExecutionBlock)();
 
 /**
  * Method may be used to perform binding between newly created object in boot proces and owner for this object. For example if an application
- * want to hole manager created in bootloader it should call block simillar to:
+ * want to hold manager created in bootloader it should call block simillar to:
  * @code{.obj-c}
  * id key = [bootLoader add:[SomeClass class] withPriority:1 forModes:@["normal"] withSelector:nil isStaticCall:NO inCallerThread:YES];
  * [bootLoader bind:key withTarget:application andSelector:@selector(setSomeClass:)];
@@ -102,11 +102,18 @@ typedef void(^ExecutionBlock)();
  * @endcode
  * This example assumes that application class has method with signature setSomeClass:(id)obj. This method will be called when
  * object pointed by SomeClass will be created.
- * @param key used to select bind object
+ * @param key used to select bind object (returned by one of add methods)
  * @param target on which given selector will be called
  * @param sel selector which should be called after new object is build, it must have signature in form name:(id)obj
  */
 -(void)bind:(id)key withTarget:(id)target andSelector:(SEL)sel;
+
+/**
+ * Method may be used to perform binding between newly created object in boot proces and Askable interface.
+ * @param key used to select bind object (returned by one of add methods)
+ * @param askableKey key which will be used to put object into {@link Askable}
+ */
+-(void)bind:(id)key withAskable:(NSString*)askableKey;
 
 /**
  * Starts execution sequence in selected mode. Mode parameter determines which added class will be created. Dependent on given settings

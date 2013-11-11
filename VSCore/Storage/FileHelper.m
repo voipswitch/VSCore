@@ -198,4 +198,10 @@
     }
     return [[NSFileManager defaultManager] fileExistsAtPath:path];
 }
++(NSArray*)listFolder:(id)path{
+    if ([path isKindOfClass:[NSURL class]] == YES){
+        path = [path path];
+    }
+    return [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
+}
 @end

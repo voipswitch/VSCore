@@ -32,13 +32,21 @@ static NSMutableDictionary* routes;
     
     [invocation setSelector:selector];
     [invocation setTarget:source];
-    [routes setObject:invocation forKey:key];
+    if (invocation != nil){
+        [routes setObject:invocation forKey:key];
+    } else {
+        DDLogError(@"Error while setting route: %@, nil invocation, skipped!", key);
+    }
 }
 
 +(void)registerConstValue:(id)value forKey:(NSString*)key{
     NSAssert([routes objectForKey:key] == nil, @"Key %@ already binded", key);
     DDLogVerbose(@"Askable register:%@ with value:%@", key, value);
-    [routes setObject:value forKey:key];
+    if (value != nil){
+        [routes setObject:value forKey:key];
+    } else {
+        DDLogError(@"Error while setting route: %@, nil const value, skipped!", key);
+    }
 }
 
 +(void)unregisterKey:(NSString*)key{

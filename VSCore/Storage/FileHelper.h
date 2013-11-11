@@ -136,4 +136,12 @@ typedef enum {
  * @return YES if file exists, otherwise NO
  */
 +(BOOL)fileExists:(id)path;
+
+/**
+ * List all files from pointed folder. Path may be pointed as NSString with fully qualified path
+ * or as URL. If given URL is not filePath type it will be converted to it.
+ * @param pathOrURL NSURL or NSString pointing file
+ * @return YES if file exists, otherwise NO
+ */
++(NSArray*)listFolder:(id)path;
 @end

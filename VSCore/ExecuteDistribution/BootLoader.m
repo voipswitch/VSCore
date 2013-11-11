@@ -10,6 +10,7 @@
 #import "Bootable.h"
 #import "BootSequenceAnalyzer.h"
 #import <objc/runtime.h>
+#import "Askable.h"
 
 #import "Collections+subscripts.h"
 
@@ -30,6 +31,8 @@
     
     id externalBindTarget;
     SEL externalBindSelector;
+
+    NSString* askableBindKey;
     
     id buildedObject;
     
@@ -48,6 +51,7 @@
     releaseAndNil(buildedObject);
     releaseAndNil(simpleBlock);
     releaseAndNil(externalBindTarget);
+    releaseAndNil(askableBindKey);
     [super dealloc];
 }
 
@@ -155,6 +159,17 @@
     }
 }
 
+-(void)bind:(id)key withAskable:(NSString*)askableKey{
+    @synchronized(self){
+        BootNode* node = bootNodes[key];
+        if (node == nil){
+            NSAssert(NO, @"Uppss no node for key:%@", key);
+            return;
+        }
+        node->askableBindKey = [askableKey retain];
+    }
+}
+
 -(void)bind:(id)key withTarget:(id)target andSelector:(SEL)sel{
     @synchronized(self){
         BootNode* node = bootNodes[key];
@@ -216,6 +231,13 @@
             [node->externalBindTarget performSelector:node->externalBindSelector withObject:[node->buildedObject bootObjToBind]];
         } else {
             [node->externalBindTarget performSelector:node->externalBindSelector withObject:node->buildedObject];
+        }
+    }
+    if (node->askableBindKey != nil){
+        if ([node->buildedObject respondsToSelector:@selector(bootObjToBind)] == YES){
+            [Askable registerConstValue:[node->buildedObject bootObjToBind] forKey:node->askableBindKey];
+        } else {
+            [Askable registerConstValue:node->buildedObject forKey:node->askableBindKey];
         }
     }
 }

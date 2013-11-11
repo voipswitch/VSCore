@@ -205,7 +205,7 @@
     id<BadgeInfoProvider> prv;
     @synchronized (self) {
         NSNumber* n = [valueForProvider objectForKey:badgeKey];
-        if ([n integerValue] == newVal){
+        if (n && [n integerValue] == newVal){
             return;
         }
         n = [NSNumber numberWithInt:newVal];
@@ -274,11 +274,12 @@
         if (prvs == nil){
             return;
         }
-        NSInteger oldVal = [[valueForGroup objectForKey:groupKey] integerValue];
+        NSNumber *m = [valueForGroup objectForKey:groupKey];
+        NSInteger oldVal = [m integerValue];
         for (id<BadgeInfoProvider> prv in prvs){
             newVal += [[valueForProvider objectForKey:[prv badgeKey]] integerValue];
         }
-        if (newVal == oldVal){
+        if (m && newVal == oldVal){
             return;
         }
         [valueForGroup setValue:[NSNumber numberWithInt:newVal] forKey:groupKey];
@@ -297,7 +298,7 @@
         NSString* bk = [prv badgeKey];
         @synchronized (self) {
             NSNumber* n = [valueForProvider objectForKey:bk];
-            if (newVal == [n integerValue]) {
+            if (n && newVal == [n integerValue]) {
                 continue;
             }
             [valueForProvider setValue:[NSNumber numberWithInt:newVal] forKey:bk];

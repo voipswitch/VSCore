@@ -45,6 +45,12 @@
 
 +(NSString*)TrimString:(NSString*)text ch:(char)ch
 {
+    if (text == nil){
+        return nil;
+    }
+    if ([text length] == 0){
+        return text;
+    }
 	NSRange range;
 	range.location = 0;
 	while ( [text characterAtIndex:range.location] == ch && range.location < [text length] ) 
