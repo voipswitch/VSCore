@@ -31,6 +31,9 @@
 //Used to mark text came from/t
 #define CONTEXT_TEXTUAL_CONTENT @"msgTxt"
 
+//Used to mark common part of context
+#define CONTEXT_COMMON_PART @"shrCtx"
+
 @protocol IOLayer;
 
 @protocol InputMessageParser <NSObject>

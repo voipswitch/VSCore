@@ -58,6 +58,9 @@
     if (a == nil){
         return;
     }
+    
+    NSMutableDictionary *commonDict = [NSMutableDictionary dictionary];
+    [context setObject:commonDict forKey:CONTEXT_COMMON_PART];
 
 //    BOOL anyPartProcessed = NO;
     for(NSObject* s in a){
