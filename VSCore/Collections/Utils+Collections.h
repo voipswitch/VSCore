@@ -35,6 +35,13 @@
  * @return YES if all elements match, NO otherwise
  */
 +(BOOL)deepEqual:(id)collection1 with:(id)collection2;
+
+@end
+
+@interface NSMutableDictionary (DeepCopy)
+
+-(void)deepMutableAddEntriesFromDictionary:(NSDictionary*)src;
+
 @end
 
 //taken from http://stackoverflow.com/a/5453600

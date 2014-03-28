@@ -8,6 +8,55 @@
 
 #import "Utils+Collections.h"
 
+@implementation NSMutableDictionary (DeepCopy)
+
+-(void)deepMutableAddEntriesFromDictionary:(NSDictionary*)src{
+    [src enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if ([obj isKindOfClass:[NSDictionary class]] == YES){
+            NSDictionary* child = [self objectForKey:key];
+            
+            if (child == nil){
+                //doesen't exist yet, so just add
+                [self setObject: obj forKey:key];
+            } else {
+                //merge if types match, or overwrite
+                if ([child isKindOfClass:[NSDictionary class]] == NO){
+                    //types differ, overwrite
+                    [self setObject: obj forKey:key];
+                } else {
+                    child = [child mutableCopy];    //check for mutability fails in some condiotins, so force copy
+                    [(NSMutableDictionary*)child deepMutableAddEntriesFromDictionary:obj];
+                    [self setObject:child forKey:key];
+                    [child release];    //due +1 from copy
+                }
+            }
+        } else if ([obj isKindOfClass:[NSArray class]] == YES){
+            NSArray* child = [self objectForKey:key];
+            
+            if (child == nil){
+                //doesen't exist yet, so just add
+                [self setObject: obj forKey:key];
+            } else {
+                //merge if types match, or overwrite
+                if ([child isKindOfClass:[NSArray class]] == NO){
+                    //types differ, overwrite
+                    [self setObject: obj forKey:key];
+                } else {
+                    child = [child mutableCopy];    //check for mutability fails in some condiotins, so force copy
+                    [(NSMutableArray*)child addObjectsFromArray:obj];
+                    [self setObject:child forKey:key];
+                    [child release];    //due +1 from copy
+                }
+            }
+
+        } else {
+            [self setObject: obj forKey:key];
+        }
+    }];
+}
+
+@end
+
 @implementation Utils(Collections)
 
 +(id)deepMutableCopy:(id)collection{
