@@ -30,6 +30,7 @@ static NSMutableDictionary* typesBind;
 @property (nonatomic, assign) BOOL sqlBondable; //does class implement SQLBonded?
 @property (nonatomic, assign) BOOL primKeyExposed; //if sqlBondable = YES, then this key tells if primary key is exposed in destClass as property
 @property (nonatomic, retain) NSString* dbFileName; //database into which object should be serialized
+@property (nonatomic, retain) NSArray* indices; //indices which should be created for table
 @end
 
 @implementation TypeProxy
@@ -71,6 +72,9 @@ static NSMutableDictionary* typesBind;
         } else {
             tp.primKeyColumn = @"primKey";
         }
+        if ([cl respondsToSelector:@selector(indices)] == YES){
+            tp.indices = [cl indices];
+        }
         //check if we have setter for primaryKey
         tp.primKeyExposed = [ReflectionHelper checkProperty:tp.primKeyColumn inClass:cl forDesription:@"Ti,N,"];
         if (tp.primKeyExposed == NO){
@@ -96,6 +100,9 @@ static NSMutableDictionary* typesBind;
                               atTable:tp.tableName
                                  inDB:tp.db
                    preserveOldInTable:[NSString stringWithFormat:@"%@_old", tp.tableName]];
+    if (tp.indices != nil) {
+        [SQLiteHelper ensureIndices:tp.indices onTable:tp.tableName inDB:tp.db];
+    }
     [classInfo release];
 }
 

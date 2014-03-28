@@ -117,6 +117,14 @@ typedef void(^RawSQLResultHandler)(sqlite3_stmt* statement);
  */
 +(void)updateData:(NSDictionary*)objData where:(NSDictionary*)where atTable:(NSString*)tableName inDB:(sqlite3*)db singleRecord:(BOOL)single;
 
+/**
+ * Tries to create indices on table. If indices are empty or nil, method silently quits.
+ * @param indices array with description of indices, see SQLBonded method +indices for more info about format
+ * @param table name of table on which indices should be added
+ * @param db sqlite3 database
+ */
++(void)ensureIndices:(NSArray*)indices onTable:(NSString*)table inDB:(sqlite3*)db;
+
 +(void)execSQL:(NSString*)sql withArguments:(NSArray*)args inDB:(sqlite3*)db;
 +(void)execSQL:(NSString*)sql withArguments:(NSArray*)args andResultHandler:(RawSQLResultHandler)blk inDB:(sqlite3*)db;
 @end

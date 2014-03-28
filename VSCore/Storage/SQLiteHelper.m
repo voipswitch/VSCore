@@ -338,7 +338,100 @@ static NSMutableDictionary* descrCache;
     return [FileHelper prefferedPath:nil withType:pathPrivateBackup];
 }
 
++(NSString*)buildIndexFromQueries:(NSArray*)subQueries onTable:(NSString*)tableName isUnique:(BOOL)isUnique{
+    NSString* query = nil;
+    NSString* subQ = [subQueries componentsJoinedByString:@","];
+    NSString* name = [NSString stringWithFormat:@"idx_%x", [subQ hash]];
+    
+    if (isUnique == YES) {
+        query = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS %@ ON %@ (%@)",
+                 name, tableName, subQ];
+    } else {
+        query = [NSString stringWithFormat:@"CREATE INDEX IF NOT EXISTS %@ ON %@ (%@)",
+                 name, tableName, subQ];
+    }
+    return query;
+}
+
++(NSString*)singleIndexFrom:(NSString*)columnName tableDescr:(NSDictionary*)tableDescr isUnique:(BOOL*)isUnique{
+    BOOL uniq = [columnName hasPrefix:@"!"];
+    if (uniq == YES){
+        columnName = [columnName substringFromIndex:1];
+    }
+    BOOL desc = [columnName hasPrefix:@"-"];
+    if ((desc == YES) || ([columnName hasPrefix:@"+"])) {
+        columnName = [columnName substringFromIndex:1];
+    }
+    if (([columnName length] == 0) || ([tableDescr objectForKey:columnName] == nil)) {
+        return nil;
+    }
+    if (isUnique != nil) {
+        *isUnique = uniq;
+    }
+    return [columnName stringByAppendingString:(desc == YES ? @" DESC" : @" ASC")];
+}
+
 #pragma mark - Public routines
+
++(void)ensureIndices:(NSArray*)indices onTable:(NSString*)table inDB:(sqlite3*)db{
+    if ([indices count] == 0) {
+        return;
+    }
+    DDLogInfo(@"Building indices for %@ using definition: %@", table, indices);
+    NSDictionary* descr = [SQLiteHelper describeTable:table inDB:db];
+    for(id indexDescr in indices){
+        NSString* query = nil;
+        if ([indexDescr isKindOfClass:[NSString class]] == YES ){
+            //simple, single column index
+            BOOL isUnique = NO;
+            query = [self singleIndexFrom:indexDescr tableDescr:descr isUnique:&isUnique];
+            if (query != nil) {
+                query = [self buildIndexFromQueries:@[query] onTable:table isUnique:isUnique];
+            }
+            
+        } else if ([indexDescr isKindOfClass:[NSArray class]] == YES ){
+            //several columns index
+            NSMutableArray* subQueries = [NSMutableArray array];
+            BOOL isUnique = NO, tmpBool;
+            for(NSString* colName in indexDescr){
+                NSString* subQuery = [self singleIndexFrom:colName tableDescr:descr isUnique:&tmpBool];
+                if (subQuery == nil) {
+                    subQueries = nil;
+                    break;
+                }
+                [subQueries addObject:subQuery];
+                isUnique |= tmpBool;
+            }
+            if (subQueries != nil) {
+                query = [self buildIndexFromQueries:subQueries onTable:table isUnique:isUnique];
+            }
+            
+        } else {
+            DDLogError(@"Unexpected type here: %@", [indexDescr class]);
+            NSAssert(NO, @"Unexpected type in indices creation");
+            continue;
+        }
+        
+        if ([query length] == 0) {
+            DDLogError(@"Empty query -> Looks like error in indeice definition");
+            continue;
+        }
+        //exequte query
+        sqlite3_stmt *statement;
+        
+        if (sqlite3_prepare_v2(db, [query UTF8String], -1, &statement, NULL) != SQLITE_OK){
+            DDLogError(@"[ensureIndices]DB error: %s",sqlite3_errmsg(db));
+            return;
+        }
+        
+        NSInteger res = sqlite3_step(statement);
+        if (res != SQLITE_DONE) {
+            DDLogError(@"[ensureIndices:2]DB error: %d: %s", res, sqlite3_errmsg(db));
+        }
+        sqlite3_finalize(statement);
+    }
+}
+
 +(void)ensureCompatibility:(NSDictionary*)tableDescr atTable:(NSString*)tableName inDB:(sqlite3*)db preserveOldInTable:(NSString*)tableNameOld{
     
     if ([SQLiteHelper checkCompatibility:tableDescr atTable:tableName inDB:db] == YES){
