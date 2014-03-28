@@ -82,4 +82,5 @@ typedef struct{
 -(void)setObject:(id)obj forKey:(NSString*)key;
 -(id)objectForKey:(NSString*)key;
 -(void)removeObjectForKey:(NSString*)key;
+-(void)removeAllObjects;
 @end

@@ -430,6 +430,21 @@ int getUptimeInMilliseconds()
     }
 }
 
+-(void)removeAllObjects{
+    if (strategy.threadSafe == YES){
+        [lock lock];
+    }
+#ifdef COLECT_CACHE_STATS
+    stats.removedItems + [objects count];
+#endif
+    [objects removeAllObjects];
+    [proxies removeAllObjects];
+
+    if (strategy.threadSafe == YES){
+        [lock unlock];
+    }
+}
+
 - (void)setStrategy:(CacheStrategy)str {
     strategy = str;
     [self applyStrategy];
