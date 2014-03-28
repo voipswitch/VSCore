@@ -89,6 +89,26 @@ uint32_t commoncrypto_crc32(uint32_t crc, const void *buf, size_t size)
     return [NSString stringWithUTF8String:&buff[0]];
 }
 
+-(NSString*)hashSHA1{
+    if ([self length] == 0){
+        return nil;
+    }
+    
+    const char *cStr = [self UTF8String];
+    NSInteger len = [self lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+    unsigned char outputBuffer[CC_SHA1_DIGEST_LENGTH];
+    CC_SHA1(cStr, len, outputBuffer);
+    
+    char buff[CC_SHA1_DIGEST_LENGTH * 2 + 1];
+    
+    char* pBuf = &buff[0];
+    for(NSInteger t = 0; t < CC_SHA1_DIGEST_LENGTH; t++){
+        pBuf += sprintf(pBuf, "%02x",outputBuffer[t]);
+    }
+    
+    return [NSString stringWithUTF8String:&buff[0]];
+}
+
 -(NSString*)hashSHA256{
     if ([self length] == 0){
         return nil;
@@ -163,6 +183,24 @@ uint32_t commoncrypto_crc32(uint32_t crc, const void *buf, size_t size)
     
     char* pBuf = &buff[0];
     for(NSInteger t = 0; t < CC_MD5_DIGEST_LENGTH; t++){
+        pBuf += sprintf(pBuf, "%02x",outputBuffer[t]);
+    }
+    
+    return [NSString stringWithUTF8String:&buff[0]];
+}
+
+-(NSString*)hashSHA1{
+    if ([self length] == 0){
+        return nil;
+    }
+    
+    unsigned char outputBuffer[CC_SHA1_DIGEST_LENGTH];
+    CC_SHA1([self bytes], (CC_LONG)[self length], outputBuffer);
+    
+    char buff[CC_SHA1_DIGEST_LENGTH * 2 + 1];
+    
+    char* pBuf = &buff[0];
+    for(NSInteger t = 0; t < CC_SHA1_DIGEST_LENGTH; t++){
         pBuf += sprintf(pBuf, "%02x",outputBuffer[t]);
     }
     

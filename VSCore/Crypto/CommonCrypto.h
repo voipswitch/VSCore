@@ -10,6 +10,7 @@
 
 @interface NSString (CryptoHashes)
 -(NSString*)hashMD5;
+-(NSString*)hashSHA1;
 -(NSString*)hashSHA256;
 -(NSString*)hashSHA512;
 -(NSString*)hashCRC;
@@ -18,6 +19,7 @@
 
 @interface NSData (CryptoHashes)
 -(NSString*)hashMD5;
+-(NSString*)hashSHA1;
 -(NSString*)hashSHA256;
 -(NSString*)hashSHA512;
 -(NSString*)hashCRC;
