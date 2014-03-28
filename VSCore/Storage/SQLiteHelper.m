@@ -41,6 +41,7 @@ static NSMutableDictionary* descrCache;
 +(void)initialize{
     typesTranslation = [[NSDictionary dictionaryWithObjectsAndKeys:
                         @"INTEGER", @"c",      //OBJ-C: bool (or character, not sure)
+                        @"INTEGER", @"B",      //OBJ-C: bool on 64 bit architecture (or character, not sure)
                         @"INTEGER(8)", @"q",   //OBJ-C: long long
                         @"INTEGER(8)", @"Q",   //OBJ-C: unsigned long long
                         @"INTEGER", @"i",   //OBJ-C: NSInteger
