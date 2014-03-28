@@ -8,49 +8,150 @@
 
 #import "NSDate+Format.h"
 
+typedef enum {
+    dfsShort = 0,
+    dfsMedium,
+    dfsLong
+} DateFormatStyle;
+
 @implementation NSDate (Format)
 
 + (NSDate*)todayMidnightDate
 {
 	NSDate* tmp = [NSDate date];
-	int t = (int) ([tmp timeIntervalSince1970] / (24 * 3600));
-	return [NSDate dateWithTimeIntervalSince1970: t * 24 * 3600];
+    NSTimeInterval timeIntervalSince1970 = [tmp timeIntervalSince1970];
+	int t = (int) (timeIntervalSince1970 / (24 * 3600));
+	return [NSDate dateWithTimeIntervalSince1970: t * 24 * 3600 - [[NSTimeZone defaultTimeZone] secondsFromGMT]];
+}
+
+- (NSString*)localUserFormatForDate:(NSDateFormatterStyle)dateStyle andTime:(NSDateFormatterStyle)timeStyle
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:dateStyle];
+    [dateFormatter setTimeStyle:timeStyle];
+    NSString *formattedDateString = [dateFormatter stringFromDate:self];
+    [dateFormatter release];
+    return formattedDateString;
+}
+
+- (NSString*)localUserFormatForDate:(NSDateFormatterStyle)dateStyle
+{
+    return [self localUserFormatForDate:dateStyle andTime:NSDateFormatterNoStyle];
+}
+
+- (NSString*)localUserFormatForTime:(NSDateFormatterStyle)timeStyle
+{
+    return [self localUserFormatForDate:NSDateFormatterNoStyle andTime:timeStyle];
+}
+
+- (NSString*)localUserLongFormatForDate
+{
+    return [self localUserFormatForDate:NSDateFormatterLongStyle];
+}
+
+- (NSString*)localUserMediumFormatForDate
+{
+    return [self localUserFormatForDate:NSDateFormatterMediumStyle];
+}
+
+- (NSString*)localUserShortFormatForDate
+{
+    return [self localUserFormatForDate:NSDateFormatterShortStyle];
+}
+
+- (NSString*)localUserLongFormatForTime
+{
+    return [self localUserFormatForTime:NSDateFormatterLongStyle];
+}
+
+- (NSString*)localUserShortFormatForTime
+{
+    return [self localUserFormatForTime:NSDateFormatterShortStyle];
+}
+
+- (NSString*)dateFormatForStyle:(DateFormatStyle)style
+{
+    NSString* format = nil;
+    switch (style) {
+        case dfsShort:
+            format = [self localUserShortFormatForDate];
+            break;
+        case dfsMedium:
+            format = [self localUserMediumFormatForDate];
+            break;
+        case dfsLong:
+            format = [self localUserLongFormatForDate];
+            break;
+    }
+    return format;
+}
+
+- (NSString*)niceFormatWithTime:(BOOL)showTime style:(DateFormatStyle)style
+{
+    NSString* niceFormat = @"";
+    NSDate* today = [NSDate todayMidnightDate];
+    NSTimeInterval timeInterval = [self timeIntervalSinceDate:today];
+    int dateDay = -(int)(timeInterval/(24*3600));
+    if (timeInterval >= 0) {
+        if (dateDay == 0) {
+            if (showTime) {
+                niceFormat = [self localUserShortFormatForTime];
+            } else {
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+                [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+                [dateFormatter setDoesRelativeDateFormatting:YES];
+                niceFormat = [dateFormatter stringFromDate:self];
+                [dateFormatter release];
+            }
+        } else {
+            if (showTime) {
+                niceFormat = [self localUserShortFormatForTime];
+            } else {
+                niceFormat = [self dateFormatForStyle:style];
+            }
+        }
+    } else if (dateDay == 0) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+        [dateFormatter setDoesRelativeDateFormatting:YES];
+        niceFormat = [dateFormatter stringFromDate:self];
+        [dateFormatter release];
+    } else if (dateDay < 6) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"EEEE"];
+        niceFormat = [[dateFormatter stringFromDate:self] capitalizedString];
+        [dateFormatter release];
+    } else {
+        niceFormat = [self dateFormatForStyle:style];
+    }
+    return niceFormat;
+}
+
+- (NSString*)niceShortFormat
+{
+    return [self niceFormatWithTime:YES style:dfsShort];
+}
+
+- (NSString*)niceMediumFormat
+{
+    return [self niceFormatWithTime:YES style:dfsMedium];
+}
+
+- (NSString*)niceLongFormat
+{
+    return [self niceFormatWithTime:YES style:dfsLong];
 }
 
 - (NSString*)niceFormat
 {
-    NSString* niceFormat = @"";
-    NSDate* today = [NSDate todayMidnightDate];
-    NSTimeInterval timeInterval = [self timeIntervalSinceDate:today]; 
-    int dateDay = -(int)(timeInterval/(24*3600));
-    if (timeInterval >= 0) {
-        NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-        [formatter setDateFormat:@"HH:mm"];
-        NSString* dateFormat = [formatter stringFromDate:self];
-        niceFormat = dateFormat;
-    } else if (dateDay == 0) {
-        niceFormat = NSLocalizedString(@"Yesterday", @"Yesterday");
-    } else if (dateDay < 6) {
-        NSCalendar *gregorian = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
-        NSDateComponents *components = [gregorian components:NSWeekdayCalendarUnit fromDate:self];
-        int dayOfWeek = [components weekday];
-        switch (dayOfWeek) {
-            case 2: niceFormat = NSLocalizedString(@"Monday", @"Monday"); break;
-            case 3: niceFormat = NSLocalizedString(@"Tuesday", @"Tuesday"); break;
-            case 4: niceFormat = NSLocalizedString(@"Wednesday", @"Wednesday"); break;
-            case 5: niceFormat = NSLocalizedString(@"Thursday", @"Thursday"); break;
-            case 6: niceFormat = NSLocalizedString(@"Friday", @"Friday"); break;
-            case 7: niceFormat = NSLocalizedString(@"Saturday", @"Saturday"); break;
-            case 1: niceFormat = NSLocalizedString(@"Sunday", @"Sunday"); break;
-            default: break;
-        }
-    } else {
-        NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-        [formatter setDateFormat:@"MM.dd.YYYY"];
-        NSString* dateFormat = [formatter stringFromDate:self];
-        niceFormat = dateFormat;
-    }
-    return niceFormat;
+    return [self niceFormatWithTime:YES style:dfsLong];
+}
+
+- (NSString*)niceFormatWithoutTime
+{
+    return [self niceFormatWithTime:NO style:dfsLong];
 }
 
 //DateFormatters
@@ -78,7 +179,9 @@
 	
 	return [dateFormatter stringFromDate:self];
 }
-+ (NSString*)parseSecsToHHMMSS:(unsigned int) val{
+
++ (NSString*)parseSecsToHHMMSS:(unsigned int)val
+{
     long sec = val % 3600;
     NSString *value = [NSString stringWithFormat:@"%02d:%02ld:%02ld",
                        val / 3600,
